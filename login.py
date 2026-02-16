@@ -15,13 +15,15 @@ def login():
     
     conn=sqlite3.connect("test.db")
     cursor=conn.cursor()
+    #fetch the password from the database
     cursor.execute("SELECT password FROM users WHERE username = ?",
         (username,))
     result=cursor.fetchone()
     if not result:
         return jsonify({"error":"User not found"}),404
-    
-    if check_password_hash(result[0], password):
+    hashed_password=result[0]
+    #check the password
+    if check_password_hash(hashed_password, password):
         return jsonify({"message":"Login successful"})
     else:
         return jsonify({"error":"Invalid credentials"})
