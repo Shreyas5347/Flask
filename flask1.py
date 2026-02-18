@@ -12,13 +12,15 @@ app=Flask(__name__)
 @app.route("/")
 def home():
     return "hello world via flask"
+if __name__=="__main__":
+    app.run(debug=True)
 '''
 home = app.route("/")(home)
 So @app.route("/") means:
 
 “Pass the function home into app.route("/") and replace it with the result.”
 @ is a decorator - A decorator in Python is:
-Decorator = wrapper Just like wrapping a gift 🎁 Decorator wraps a function
+Decorator = wrapper Just like wrapping a gift , Decorator wraps a function
 '''
 
 '''
